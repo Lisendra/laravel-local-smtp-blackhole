@@ -9,7 +9,7 @@ class BlackholeController extends Controller
 {
     public function test() {
         
-        return view('blackhole:test');
+        return view('blackhole::test');
     }
 
 }
