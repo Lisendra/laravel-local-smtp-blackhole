@@ -14,7 +14,7 @@ class CreateSmtpBlackholeCatchedEmail extends Migration
     public function up()
     {
 
-        if (config('app.env') !== 'local')  return true;
+        if (!app()->isLocal()) return true;
 
         Schema::create('smtp_blackhole_catched_email', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -33,7 +33,7 @@ class CreateSmtpBlackholeCatchedEmail extends Migration
      */
     public function down()
     {
-        if (config('app.env') !== 'local')  return true;
+        if (!app()->isLocal()) return true;
         
         Schema::dropIfExists('smtp_blackhole_catched_email');
     }
