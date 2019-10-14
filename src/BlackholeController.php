@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class BlackholeController extends Controller
 {
     public function test() {
-        echo "It works";
+        
+        return view('blackhole:test');
     }
+
 }

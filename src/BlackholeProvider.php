@@ -16,6 +16,7 @@ class BlackholeProvider extends ServiceProvider
     {
         $this->loadRoutes();
         $this->loadMigrations();
+        $this->loadViews();
     }
 
     private function loadRoutes()
@@ -37,5 +38,10 @@ class BlackholeProvider extends ServiceProvider
     private function loadMigrations()
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
+    }
+
+    private function loadViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/views', 'blackhole:');
     }
 }
