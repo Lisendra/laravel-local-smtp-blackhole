@@ -42,7 +42,7 @@ This package is compatible **only** with mysql.
 
 3. Inside this section, add definition of this respository. 
 
-   This is a temporary solution until I succesfully register the package into official repositories (both composer and npm repositories will be involved)
+   This is a temporary solution until I succesfully register the package into official composer repository
 
         "repositories" : [
             ....
@@ -60,8 +60,26 @@ This package is compatible **only** with mysql.
 
 5. Test package is succesfully installed navigating to 
 
-
         /local-smtp-black-hole-test
+
+    Because Laravel caches routes, if it can, in case you got a `404`, do a
+
+        php artisan route:clear
+
+    And check if test route is annunced using 
+
+        php artisan route:list --path local-smtp 
+
+    You should see 
+
+    ```
+    +--------+----------+---------------------------+------+---------------------------------------------+------------+
+    | Domain | Method   | URI                       | Name | Action                                      | Middleware |
+    +--------+----------+---------------------------+------+---------------------------------------------+------------+
+    |        | GET|HEAD | local-smtp-blackhole-test |      | Realtebo\Blackhole\BlackholeController@test |            |
+    +--------+----------+---------------------------+------+---------------------------------------------+------------+
+    ```
+
 
 6. Add then the [companion npm module](https://www.npmjs.com/package/@realtebo/local-smtp-blackhole). 
 
@@ -96,7 +114,22 @@ This package is compatible **only** with mysql.
 
 9. Start the server 
 
-       node run blackhole   
+       npm run blackhole   
+
+    The node package tries to identify Laravel app's `.env` file, but you can also manually specify where
+    to find it 
+
+        ENV_PATH=/path/to/specific .env npm run blackhole
+
+    Obviously you can specifiy `ENV_PATH` in the command in the `scripts` section of your `packages.json`.
+
+    If you use a custom .env file, the only configs needed are the one related to `mysql` connection
+
+        DB_HOST=192.168.15.221
+        DB_PORT=3336
+        DB_DATABASE=name_of_your_db
+        DB_USERNAME=a_db_username
+        DB_PASSWORD=the_db_user_password
 
 10. Configurate the mail client to send through the new smtp server
 
