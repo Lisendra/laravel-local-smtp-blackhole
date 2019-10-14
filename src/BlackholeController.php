@@ -16,7 +16,7 @@ class BlackholeController extends Controller
 
     public function index()
     {
-        $all_mails =     CatchedEmail::all();
+        $all_mails = CatchedEmail::all();
 
         return view('blackhole::index', [
             'all_mails' => $all_mails
