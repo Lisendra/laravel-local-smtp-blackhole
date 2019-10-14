@@ -1,0 +1,25 @@
+{
+    "name": "realtebo/laravel-local-smtp-blackhole",
+    "description": "Local smtp service catching outgoing mails without really sending, with gui to see live version of email your project is sending",
+    "type": "library",
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "Realtebo",
+            "email": "mirkotebaldi@yahoo.it"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Realtebo\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Realtebo\\Blackhole\\BlackholeProvider"
+            ]
+        }
+    },
+    "require": {}
+}
