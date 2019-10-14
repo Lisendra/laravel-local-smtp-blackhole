@@ -19,6 +19,9 @@ This composer package offers the following features to take full advantage of wh
   - A minimal GUI allow you to receive notification of new email. This is achieved listening via socket.io (again, the companion package is the author of fired events)
 - Also, a minimal GUI to preview and do minimal handling of received emails reading from db (yes, you're right, is the companion package the responsable of saving email into db)
 
+# Prerequisites
+
+This package is compatible **only** with mysql.
 
 # Installation
 
@@ -72,16 +75,16 @@ This composer package offers the following features to take full advantage of wh
         npm install @realtebo/local-smtp-blackhole --save-dev [--no-bin-links]
 
 
-7. Add the following command to `scripts` section to run the smtp+websocket server
+7. Add the following command to `scripts` section of `packages.json` to run the smtp+websocket server
 
         "scripts": {
             ....
-            "blackhole": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js
+            "blackhole": "node node_modules/@realtebo/local-smtp-blackhole/src/local-smtp-server.js"
 
 
-8. Exceute the migration
+8. Execute the migration
 
-        `php artisan migrate`
+        php artisan migrate
 
     > IMPORTANT: this is safe for production, because the migration tests environment name before doing anything.
       If the `APP_ENV` is not `local`, simply the migration does nothing. The migration 
@@ -89,12 +92,23 @@ This composer package offers the following features to take full advantage of wh
       change anything in the deploy flow. In the same way you can safely run a rollback
       doing something only when in `local` environment.
 
-    > PLEASE open an issue if you see potential problems.
+    > But.... PLEASE open an issue if you see potential problems.
 
+9. Start the server 
+
+       node run blackhole   
+
+10. Configurate the mail client to send through the new smtp server
+
+        host/ip: hostname/ip of machine running this code
+        username: localsmtp
+        password: blackhole
+        port: 2525
+        authmod: normal password, supports but ignores SSL/TLS
 
 # Collaborating
 
-I suggest to wait until this package is released in a official minimum working version  on composer.
+I suggest to wait until this package is released in a official minimum working version on composer.
 
 Anyway, feel free to open a new issue. Actually, I do not enforce boring templates, simply open an issue and I'll try to understand you. 
 
