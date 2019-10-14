@@ -15,6 +15,7 @@ class BlackholeProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutes();
+        $this->loadMigrations();
     }
 
     private function loadRoutes()
@@ -25,5 +26,16 @@ class BlackholeProvider extends ServiceProvider
     private function registerControllers()
     {
         $this->app->make('Realtebo\Blackhole\BlackholeController');
+    }
+
+    /**
+     * Once your package's migrations have been registered, they 
+     * will automatically be run when the php artisan migrate command is 
+     * executed. You do not need to export them to the application's 
+     * main database/migrations directory.
+     */
+    private function loadMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 }
