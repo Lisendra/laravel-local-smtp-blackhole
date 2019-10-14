@@ -42,6 +42,6 @@ class BlackholeProvider extends ServiceProvider
 
     private function loadViews()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'blackhole:');
+        $this->loadViewsFrom(__DIR__.'/views', 'blackhole');
     }
 }
