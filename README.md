@@ -60,7 +60,7 @@ This package is compatible **only** with mysql.
 
 5. Test package is succesfully installed navigating to 
 
-        /local-smtp-black-hole-test
+        /local-smtp-blackhole-test
 
     Because Laravel caches routes, if it can, in case you got a `404`, do a
 
